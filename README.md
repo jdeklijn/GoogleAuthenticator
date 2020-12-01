@@ -34,6 +34,11 @@ echo "Google Charts URL for the QR-Code: ".$qrCodeUrl."\n\n";
 $oneCode = $ga->getCode($secret);
 echo "Checking Code '$oneCode' and Secret '$secret':\n";
 
+// This wont work! The $secret and the $oneCode are generated from the same $secret.
+// There is no input from the user in this verification.
+// $i2FAVerifyCode = $_post['2FAVerify'];
+// $checkResult = $ga->verifyCode($i2FAVerifyCode, $oneCode, 2);    // 2 = 2*30sec clock tolerance
+
 $checkResult = $ga->verifyCode($secret, $oneCode, 2);    // 2 = 2*30sec clock tolerance
 if ($checkResult) {
     echo 'OK';
